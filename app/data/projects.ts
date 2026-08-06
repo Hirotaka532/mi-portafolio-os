@@ -32,10 +32,10 @@ export const PROJECTS: Project[] = [
     stack: ['Flutter', 'Dart', 'Sockets TCP'],
     isPrivate: true,
     captures: [
-      '/public/buscaminas/mines1.png',
-      '/public/buscaminas/mines2.png',
-      '/public/buscaminas/mines3.png',
-      '/public/buscaminas/mines4.png'
+      '/buscaminas/mines1.png',
+      '/buscaminas/mines2.png',
+      '/buscaminas/mines3.png',
+      '/buscaminas/mines4.png'
     ],
   },
   {
@@ -48,8 +48,8 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Hirotaka532/inmijobs-app',
     website: 'https://inmijobs-app.vercel.app/',
     captures: [
-      '/public/inmi/inmi1.png',
-      '/public/inmi/inmi2.png'
+      '/inmi/inmi1.png',
+      '/inmi/inmi2.png'
     ],
   },
   {
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
     github: 'https://github.com/Hirotaka532/semillas_identidad_app',
     website: 'https://semillas-identidad-app.vercel.app/',
     captures: [
-      '/public/semillas/semillas1.png'
+      '/semillas/semillas1.png'
     ],
   }
 ];
