@@ -19,9 +19,9 @@ export const PROJECTS: Project[] = [
     stack: ['React Native', 'Node.js', 'Supabase', 'Render', 'Cronjobs'],
     isPrivate: true,
     captures: [
-      '/public/shinkane/shin1.png',
-      '/public/shinkane/shin2.png',
-      '/public/shinkane/shin3.png'
+      '/shinkane/shin1.png',
+      '/shinkane/shin2.png',
+      '/shinkane/shin3.png'
     ], 
   },
   {
