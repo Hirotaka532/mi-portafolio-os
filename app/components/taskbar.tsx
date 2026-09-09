@@ -2,8 +2,8 @@ import { useState, useEffect, type Dispatch, type SetStateAction, type MouseEven
 // Marcas y Retro: react-icons
 import { FaWindows } from "react-icons/fa";
 import { FcFolder } from "react-icons/fc";
-import { GoHomeFill } from "react-icons/go"; // <-- Regresa tu Home original
-import { BsBatteryHalf } from "react-icons/bs"; // <-- Regresa tu Batería original
+import { GoHomeFill } from "react-icons/go";
+import { BsBatteryHalf } from "react-icons/bs";
 // Sistema UI: lucide-react
 import { Search, Wifi, Volume2 } from "lucide-react";
 

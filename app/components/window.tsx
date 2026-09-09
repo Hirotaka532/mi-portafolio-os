@@ -1,6 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { motion, useMotionValue, animate } from "framer-motion";
-// Sistema UI: lucide-react
 import { X, Square, Minus, Copy } from "lucide-react";
 
 interface WindowProps {
