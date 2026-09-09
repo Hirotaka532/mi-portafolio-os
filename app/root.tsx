@@ -8,6 +8,8 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+
+import "@fontsource-variable/inter";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -16,32 +18,21 @@ export const links: Route.LinksFunction = () => [
     as: "image",
     href: "/fondo.webp",
     type: "image/webp",
-  },
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
+  }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    // suppressHydrationWarning silencia los errores causados por extensiones del navegador
     <html lang="es" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#3382c7" />
         <Meta />
         <Links />
       </head>
       <body 
         suppressHydrationWarning
-        // Eliminado el bg-[#3382c7]. Ahora es 100% la imagen.
         className="bg-[url('/fondo.webp')] bg-cover bg-center bg-no-repeat bg-fixed m-0 p-0 overflow-hidden"
         style={{ 
           transform: "translateZ(0)",
