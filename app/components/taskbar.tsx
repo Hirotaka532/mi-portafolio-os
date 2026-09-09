@@ -1,56 +1,107 @@
-import { useState, useEffect } from "react";
-import { FaWindows, FaSearch, FaVolumeUp } from "react-icons/fa";
-import { GoHomeFill } from "react-icons/go";
+import { useState, useEffect, type Dispatch, type SetStateAction, type MouseEvent } from "react";
+// Marcas y Retro: react-icons
+import { FaWindows } from "react-icons/fa";
 import { FcFolder } from "react-icons/fc";
-import { IoWifi } from "react-icons/io5";
-import { BsBatteryHalf } from "react-icons/bs";
+import { GoHomeFill } from "react-icons/go"; // <-- Regresa tu Home original
+import { BsBatteryHalf } from "react-icons/bs"; // <-- Regresa tu Batería original
+// Sistema UI: lucide-react
+import { Search, Wifi, Volume2 } from "lucide-react";
 
-export default function Taskbar({ onSearchChange, searchTerm, onToggleStart, onToggleExplorer, isExplorerActive }: any) {
-  const [time, setTime] = useState(new Date());
+interface TaskbarProps {
+  searchTerm: string;
+  onSearchChange: Dispatch<SetStateAction<string>> | ((term: string) => void);
+  onToggleStart: (e: MouseEvent<HTMLButtonElement | SVGElement>) => void;
+  onToggleExplorer: () => void;
+  onToggleHome: () => void;
+  isExplorerOpen: boolean;
+  isMinimized: boolean;
+}
+
+export default function Taskbar({
+  onSearchChange,
+  searchTerm,
+  onToggleStart,
+  onToggleExplorer,
+  onToggleHome,
+  isExplorerOpen,
+  isMinimized,
+}: TaskbarProps) {
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setTime(new Date());
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="fixed bottom-0 w-full h-12 bg-black/80 backdrop-blur-md border-t border-white/5 flex items-center justify-between px-4 text-white z-70">
-      
-      {/* IZQUIERDA: Menú y Buscar */}
-      <div className="flex items-center gap-4 flex-1">
-        <FaWindows onClick={onToggleStart} className="text-xl cursor-pointer hover:text-blue-400 active:scale-90 transition-all" />
+    <footer className="h-12 w-full bg-neutral-900/85 backdrop-blur-xl border-t border-white/10 flex items-center justify-between px-4 text-white select-none z-50 shrink-0">
+      {/* IZQUIERDA: Menú y Buscador */}
+      <div className="flex items-center gap-3 flex-1">
+        <button 
+          onClick={onToggleStart} 
+          aria-label="Menú Inicio"
+          className="hover:text-blue-400 active:scale-90 transition-all p-1.5 rounded-md hover:bg-white/5"
+        >
+          <FaWindows className="text-xl" />
+        </button>
+
         <div className="relative flex items-center max-w-xs w-full" onClick={(e) => e.stopPropagation()}>
-          <FaSearch className="absolute left-3 text-[10px] text-gray-500" />
+          <Search size={14} className="absolute left-3 text-gray-400 pointer-events-none" />
           <input 
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
-            type="text" placeholder="Buscar..."
-            className="w-full bg-white/10 border border-white/10 rounded-full py-1 pl-9 pr-4 text-xs focus:outline-none focus:bg-white/15 transition-all"
+            type="text" 
+            placeholder="Buscar..."
+            className="w-full bg-white/10 border border-white/10 rounded-full py-1 pl-9 pr-4 text-xs placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:bg-white/15 transition-all"
           />
         </div>
       </div>
 
-      {/* CENTRO: Apps */}
-      <div className="flex items-center gap-8 flex-1 justify-center h-full">
-        <div className="relative h-full flex items-center">
-          <FcFolder onClick={onToggleExplorer} className="text-3xl cursor-pointer active:scale-90" />
-          {isExplorerActive && <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-1 bg-blue-500 rounded-full shadow-[0_0_10px_blue]" />}
-        </div>
-        <GoHomeFill className="text-2xl opacity-60 hover:opacity-100 cursor-pointer" />
+      {/* CENTRO: Apps ancladas */}
+      <div className="flex items-center gap-6 flex-1 justify-center h-full">
+        {/* Botón de Carpeta */}
+        <button 
+          type="button"
+          onClick={onToggleExplorer} 
+          className="relative h-full flex items-center px-2 hover:bg-white/5 transition-colors group"
+          aria-label="Explorador de Proyectos"
+        >
+          <FcFolder className="text-3xl transition-transform group-hover:scale-105 active:scale-95" />
+          {isExplorerOpen && (
+            <span 
+              className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 rounded-full transition-all ${
+                isMinimized 
+                  ? "bg-white/40 shadow-none" 
+                  : "bg-blue-500 shadow-[0_0_8px_#3b82f6]"
+              }`} 
+            />
+          )}
+        </button>
+
+        {/* Botón Home - Recuperado */}
+        <button 
+          type="button"
+          onClick={onToggleHome}
+          aria-label="Mostrar Escritorio" 
+          className="opacity-70 hover:opacity-100 hover:text-blue-400 active:scale-90 transition-all p-2 rounded-md hover:bg-white/5"
+        >
+          <GoHomeFill className="text-2xl" />
+        </button>
       </div>
 
-      {/* DERECHA: Tray de Sistema */}
+      {/* DERECHA: Bandeja de Sistema */}
       <div className="flex items-center gap-4 flex-1 justify-end">
-        <div className="flex gap-3 text-sm opacity-60">
-          <IoWifi />
-          <FaVolumeUp />
-          <BsBatteryHalf />
+        <div className="flex gap-3 text-white/70 items-center">
+          <Wifi size={16} />
+          <Volume2 size={16} />
+          <BsBatteryHalf className="text-lg" /> {/* <-- Batería original con tamaño ajustado */}
         </div>
-        <div className="flex flex-col items-end text-[10px] font-medium leading-tight border-l border-white/10 pl-4 opacity-80 select-none">
-          <span>{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</span>
-          <span>{time.toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+        <div className="flex flex-col items-end text-[10px] font-medium leading-tight border-l border-white/10 pl-3 opacity-80 select-none">
+          <span>{time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "--:--"}</span>
+          <span>{time ? time.toLocaleDateString([], { day: '2-digit', month: '2-digit', year: 'numeric' }) : "--/--/----"}</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

@@ -61,7 +61,7 @@ export default function StartMenu({ searchTerm, onProjectClick }: StartMenuProps
         <p className="text-white/40 text-[9px] mb-4 text-center leading-tight">Estudiante de Ing. en Informática</p>
         
         <div className="p-3 bg-white/5 rounded text-[10px] text-white/70 italic leading-snug mb-auto text-center">
-            "Apasionado por crear interfaces que parecen imposibles."
+            "Creando experiencias dinámicas, limpias y de alto rendimiento."
         </div>
 
         {/* REDES SOCIALES CON TUS ENLACES */}

@@ -6,8 +6,10 @@ export interface Project {
   github?: string;
   website?: string;
   isPrivate: boolean;
-  captures: string[]; 
-  layout: 'mobile' | 'desktop'; // Nuevo campo para control de galería
+  captures: string[];
+  layout: 'mobile' | 'desktop';
+  version?: string;
+  versionNote?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -15,54 +17,58 @@ export const PROJECTS: Project[] = [
     id: 'shinkane',
     title: 'Shinkane',
     layout: 'mobile',
-    description: 'Sistema de monitoreo de divisas (BCV/Binance P2P). Infraestructura Backend para seguimiento de tasas con scraping automatizado y métricas en tiempo real.',
-    stack: ['React Native', 'Node.js', 'Supabase', 'Render', 'Cronjobs'],
+    description:
+      'App de monitoreo de divisas con seguimiento de tasas del BCV y Binance P2P. Proyecto en desarrollo que combina React Native con una infraestructura backend propia, scraping automatizado, procesamiento de datos y tareas programadas para mantener la información actualizada.',
+    stack: ['React Native', 'Node.js', 'Supabase', 'Render', 'Cron Jobs'],
     isPrivate: true,
+    version: '1.0.1',
+    versionNote: 'Capturas de una versión anterior',
     captures: [
-      '/shinkane/shin1.png',
-      '/shinkane/shin2.png',
-      '/shinkane/shin3.png'
-    ], 
+      '/shinkane/shin1.webp',
+      '/shinkane/shin2.webp'
+    ],
   },
   {
     id: 'buscaminas',
     title: 'Buscaminas TCP',
     layout: 'mobile',
-    description: 'Juego clásico con modo multijugador sincronizado mediante sockets de red. Soporte para juego local e internacional con lógica nativa en Dart.',
-    stack: ['Flutter', 'Dart', 'Sockets TCP'],
+    description:
+      'Mi 1er proyecto Mobile. Un Buscaminas desarrollado con Flutter y Dart, con modo individual y partidas de dos jugadores sincronizadas mediante sockets TCP sobre una red local.',
+    stack: ['Flutter', 'Dart', 'TCP Sockets'],
     isPrivate: true,
     captures: [
-      '/buscaminas/mines1.png',
-      '/buscaminas/mines2.png',
-      '/buscaminas/mines3.png',
-      '/buscaminas/mines4.png'
+      '/buscaminas/mines1.webp',
+      '/buscaminas/mines2.webp',
+      '/buscaminas/mines3.webp',
+      '/buscaminas/mines4.webp'
     ],
   },
   {
     id: 'inmijobs',
     title: 'Inmijobs',
     layout: 'desktop',
-    description: 'Landing page para conexión laboral internacional. Optimizada para rendimiento y distribución directa de APK mediante GitHub Releases.',
-    stack: ['React', 'Vite', 'CSS Puro', 'Vercel', 'GitHub Releases'],
+    description:
+      'Landing page desarrollada como punto de presentación y distribución para Inmijobs. Diseñada para explicar rápidamente la propuesta de la aplicación y facilitar la descarga de su versión Android mediante GitHub Releases.',
+    stack: ['React', 'Vite', 'CSS', 'Vercel', 'GitHub Releases'],
     isPrivate: false,
     github: 'https://github.com/Hirotaka532/inmijobs-app',
     website: 'https://inmijobs-app.vercel.app/',
     captures: [
-      '/inmi/inmi1.png',
-      '/inmi/inmi2.png'
+      '/inmi/inmi1.webp'
     ],
   },
   {
     id: 'semillas',
     title: 'Semillas de Identidad',
     layout: 'desktop',
-    description: 'Web promocional para proyecto educativo indígena. Gestión de alojamiento de binarios para múltiples gamas de dispositivos.',
-    stack: ['React', 'Vite', 'CSS Puro', 'Vercel', 'GitHub Releases'],
+    description:
+      'Sitio web creado para presentar y distribuir una aplicación educativa enfocada en la identidad y los conocimientos de comunidades indígenas. El diseño busca trasladar la temática del proyecto a la propia experiencia web, incorporando una identidad visual más elaborada y soporte para distintas versiones de la aplicación según el dispositivo.',
+    stack: ['React', 'Vite', 'CSS', 'Vercel', 'GitHub Releases'],
     isPrivate: false,
     github: 'https://github.com/Hirotaka532/semillas_identidad_app',
     website: 'https://semillas-identidad-app.vercel.app/',
     captures: [
-      '/semillas/semillas1.png'
+      '/semillas/semillas1.webp'
     ],
   }
 ];
